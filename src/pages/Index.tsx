@@ -1,19 +1,19 @@
+import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Menu from "@/components/Menu";
+import MenuNew from "@/components/MenuNew";
 import Services from "@/components/Services";
-import Hours from "@/components/Hours";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
     <main className="min-h-screen">
+      <Navigation />
       <Hero />
       <About />
-      <Menu />
+      <MenuNew />
       <Services />
-      <Hours />
       <Contact />
       <Footer />
     </main>

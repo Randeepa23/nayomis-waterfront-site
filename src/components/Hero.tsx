@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import heroImage from "@/assets/hero-waterfront.jpg";
+import heroImage from "@/assets/hero-vibrant.jpg";
 
 const Hero = () => {
   const scrollToMenu = () => {
@@ -8,7 +8,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax Effect */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat animate-fade-in"

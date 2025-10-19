@@ -2,7 +2,7 @@ import aboutImage from "@/assets/about-interior.jpg";
 
 const About = () => {
   return (
-    <section className="py-20 bg-cream">
+    <section id="about" className="py-20 bg-cream">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="animate-slide-in-left">

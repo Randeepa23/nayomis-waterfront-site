@@ -1,10 +1,16 @@
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+
+const hoursData = [
+  { day: "Sunday", hours: "6 AM – 11 PM" },
+  { day: "Monday", hours: "7 AM – 11 PM" },
+  { day: "Tuesday - Saturday", hours: "6 AM – 11 PM" },
+];
 
 const Contact = () => {
   const { toast } = useToast();
@@ -13,6 +19,17 @@ const Contact = () => {
     phone: "",
     message: ""
   });
+
+  const isOpenNow = () => {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentDay = now.getDay();
+    
+    if (currentDay === 1) { // Monday
+      return currentHour >= 7 && currentHour < 23;
+    }
+    return currentHour >= 6 && currentHour < 23;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +41,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 bg-background">
+    <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
@@ -71,6 +88,34 @@ const Contact = () => {
                 <div>
                   <h3 className="font-bold text-lg mb-1 text-primary">Email</h3>
                   <p className="text-muted-foreground">waterfront@nayomis.com</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Opening Hours Card */}
+            <Card className="shadow-card border-0 hover:shadow-elegant transition-smooth">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full gradient-gold flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-lg mb-1 text-primary">Opening Hours</h3>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className={`w-2 h-2 rounded-full ${isOpenNow() ? 'bg-green-500' : 'bg-red-500'} animate-pulse`} />
+                      <span className={`text-sm font-semibold ${isOpenNow() ? 'text-green-600' : 'text-red-600'}`}>
+                        {isOpenNow() ? 'Open Now' : 'Closed'}
+                      </span>
+                    </div>
+                    <div className="space-y-2">
+                      {hoursData.map((item, idx) => (
+                        <div key={idx} className="flex justify-between text-sm">
+                          <span className="text-muted-foreground">{item.day}</span>
+                          <span className="font-medium text-gold-dark">{item.hours}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
